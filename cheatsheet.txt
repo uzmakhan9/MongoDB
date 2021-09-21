@@ -1,0 +1,125 @@
+All MongoDB Commands for databases(PowerShell Only):-
+
+view all databases:-
+show dbs
+
+create a new or switch databases:-
+use dbname
+
+to see in which database you're working:-
+db
+
+delete databse:-
+db.dropDatabase()
+
+MongoDB Commands for collections:-
+show collections
+
+to create a collection:-
+db.createCollection('new_collection')
+
+to delete a collection:-
+db.new_collection.drop()
+
+MongoDB Commands for rows:-
+
+to insert one row:-
+db.content.insert({
+    'name':'uzma',
+    'lang':'english',
+    'age':'22',
+
+})
+
+to insert many rows:-
+db.content.insertMany([{
+    'name':'uzma',
+    'lang':'english',
+    'age':'22'
+    
+    },
+    {
+    'name':'yasira',
+    'lang':'english',
+    'age':'18'
+
+    },
+    {
+    'name':'tahira',
+    'lang':'english',
+    'age':'14'
+}])
+
+show all rows in a collection:-
+db.content.find()
+
+to show all rows in a pretty way:-
+db.content.find().pretty()
+
+to add today's date:-
+db.content.insert({
+     'name':'uzma',     
+     'lang':'english',     
+     'age':'22',
+     'date':new Date()      
+})
+
+Search in a MongoDB database:-
+db.content.find({name:'yasira'})
+db.content.find({name:'uzma',age:'22'})
+
+limiting:-
+limit the number of rows in output:-
+db.content.find().pretty().limit(2)
+
+count the number of rows in the output:-
+db.content.find().count()
+db.content.find({name:'tahira'}).count()
+
+for ascending sorting:-
+db.content.find().sort({age:1}).pretty()
+for descending sorting:-
+db.content.find().sort({age:-1}).pretty()
+db.content.find().sort({age:1}).pretty().limit(2)
+
+find the first row matching the object, findOne function:-
+db.content.findOne({name:'uzma'})
+
+update a row:-
+db.content.update({name:'yasira'},
+{
+    'name':'tahira',
+    'lang':'english',
+    'age':'14'
+})
+
+db.content.update({name:'yasira'},
+{
+    'name':'khan',
+    'lang':'english',
+    'age':14
+}, {upsert:true})
+
+search for update operators in MongoDB on google.
+update increment oprator:-
+db.content.update({name:'khan'},
+{$inc:{
+    age:5
+}})
+
+update rename operator:-
+db.content.update({name:'khan'},
+{$rename:{
+    lang:'lang known'
+}})
+
+deleting a row:-
+db.content.remove({name:'tahira'})
+
+less than:-
+db.content.find({age:{$lt:90}})
+greater than:-
+db.content.find({age:{$gt:9}})
+
+And Last but not the least, Do not forget MongoDB Compass for GUI Interface.
+And MongoDB Atlas for cloud
